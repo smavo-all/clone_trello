@@ -9,23 +9,17 @@
 <body>
 
     <div id="app">
+        <button v-on:click="changeVisibility" >Mostrar/Ocultar</button>
+        <br>
         <ul v-if="view">
             <li v-for="(show, index) in tvshows" v-bind:key="index" >
                 <strong>{{show.name}}</strong> {{show.season}} Temporadas
             </li>
         </ul>
         <div v-else>
-            No se encuetran datos disponibles
+            <p>No se encuetran datos disponibles</p>
         </div>
-        
-        <ul v-show="view">
-            <li v-for="(show, index) in tvshows" v-bind:key="index" >
-                <strong>{{show.name}}</strong> {{show.season}} Temporadas
-            </li>
-        </ul>
-        <div v-hide>
-            No se encuetran datos disponibles
-        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -33,13 +27,18 @@
         const app = new Vue({
             el: '#app',
             data: {
-                view: false,
+                view: true,
                 tvshows: [
                     {name: 'GOD', season : 7},
                     {name: 'MR ROBOT', season : 4},
                     {name: 'SILICN VALLET', season : 5},
                     {name: 'VIKINGOS', season : 4}
                 ]
+            },
+            methods: {
+                changeVisibility: function (){
+                    this.view = !this.view;
+                }
             }
         });
     </script>
